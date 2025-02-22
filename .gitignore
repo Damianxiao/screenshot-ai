@@ -1,2 +1,4 @@
 config/config.yaml
-.vscode
+/.vscode/
+static/screenshot
+static/log
