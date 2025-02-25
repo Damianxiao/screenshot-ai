@@ -2,23 +2,23 @@ package api
 
 // GptResponse 定义 OpenAI Chat Completions API 的响应结构
 type GptResponse struct {
-	ID      string          `json:"id"`      // 请求 ID，用于日志追踪
-	Created int64           `json:"created"` // 创建时间，用于日志
-	Model   string          `json:"model"`   // 模型版本，用于日志
-	Choices []GptRespChoice `json:"choices"` // 包含回复内容
-	Usage   GptRespUsage    `json:"usage"`   // token 使用情况，用于日志
+	ID      string          `json:"id"`
+	Created int64           `json:"created"`
+	Model   string          `json:"model"`
+	Choices []GptRespChoice `json:"choices"`
+	Usage   GptRespUsage    `json:"usage"`
 }
 
 type GptRespChoice struct {
-	Message GptRespMessage `json:"message"` // 回复消息
+	Message GptRespMessage `json:"message"`
 }
 
 type GptRespMessage struct {
-	Content string `json:"content"` // GPT 的回答
+	Content string `json:"content"`
 }
 
 type GptRespUsage struct {
-	PromptTokens     int `json:"prompt_tokens"`     // 输入 token
-	CompletionTokens int `json:"completion_tokens"` // 输出 token
-	TotalTokens      int `json:"total_tokens"`      // 总 token
+	PromptTokens     int `json:"prompt_tokens"`
+	CompletionTokens int `json:"completion_tokens"`
+	TotalTokens      int `json:"total_tokens"`
 }

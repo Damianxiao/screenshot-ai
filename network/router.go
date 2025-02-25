@@ -13,6 +13,5 @@ func NewRouter() *gin.Engine {
 		// upgrade
 		ws.GET("/ws", handlerWebSocket())
 	}
-
 	return r
 }
