@@ -77,7 +77,9 @@ const App = () => {
       <div className="controls">
         <select value={model} onChange={(e) => setModel(e.target.value)} className="model-select">
           <option value="gpt-4o">GPT-4o</option>
-          <option value="gpt-3.5-turbo">GPT-3.5-turbo</option>
+          <option value="claude-3-5-sonnet-20240620">claude-3.5</option>
+          <option value="gemini-1.5-flash">gemini-1.5</option>
+          <option value="grok-2-vision-1212">grok-2</option>
         </select>
         <button onClick={handleContinue} className="continue-btn">answer</button>
       </div>

@@ -12,15 +12,15 @@ import (
 
 func CallApiWithimg(img, model string) (string, error) {
 	// TODO set pattern
-	modelConfig := config.Cfg.Model[model[:3]]
+	modelConfig := config.Cfg.Model[model[:]]
 	fmt.Println("call ai.....")
-	payload := NewGptPayloadWithImg(model, img)
+	payload := selectModel(model, img)
 	jsonPayload, err := json.Marshal(payload)
 	if err != nil {
 		return "", fmt.Errorf("api:JSON marshal failed: %v", err)
 	}
 	log.Logobj.Info("call model: ", model)
-	msg, err := CallGpt(modelConfig.Url, modelConfig.Api, jsonPayload)
+	msg, err := Call(modelConfig.Url, modelConfig.Api, jsonPayload)
 	// broadcast to hub
 	if err != nil {
 		return "", err
@@ -28,7 +28,25 @@ func CallApiWithimg(img, model string) (string, error) {
 	return msg, nil
 }
 
-func CallGpt(url, apiKey string, jsonPayload []byte) (string, error) {
+func selectModel(model, img string) map[string]interface{} {
+	switch model {
+	case "gpt-4o":
+		// 为gpt-4o模型执行特定操作
+		return NewGptPayload(model, img)
+	case "claude-3-5-sonnet-20240620":
+		// 为another-model模型执行另一特定操作
+		return NewClaudePayload(model, img)
+	case "gemini-1.5-flash":
+		return NewGeminiPayload(model, img)
+	case "grok-2-vision-1212":
+		return NewGrokPayload(model, img)
+	default:
+		// 为其他所有模型执行默认操作
+		return NewGptPayload(model, img)
+	}
+}
+
+func Call(url, apiKey string, jsonPayload []byte) (string, error) {
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonPayload))
 	if err != nil {
 		return "", fmt.Errorf("call:create req failed")
