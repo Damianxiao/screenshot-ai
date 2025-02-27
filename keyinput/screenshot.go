@@ -32,7 +32,7 @@ func NewBind(keys, donekeys []string) *bind {
 }
 
 func (b *bind) StartEvents() {
-	hook.Register(hook.KeyDown, b.keys, func(e hook.Event) {
+	hook.Register(hook.MouseDrag, b.keys, func(e hook.Event) {
 		b.mu.Lock()
 		defer b.mu.Unlock()
 		now := time.Now()

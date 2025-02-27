@@ -69,7 +69,8 @@ const App = () => {
     <div className="App">
       <div className="screenshot-container">
         {screenshot ? (
-          <img src={`data:image/png;base64,${screenshot}`} alt="" className="screenshot" />
+          <img src={`data:image/png;base64,${screenshot}`} alt="" className="screenshot"
+          onClick={handleContinue} />
         ) : (
           <p className="placeholder">wait for screenshot...</p>
         )}
