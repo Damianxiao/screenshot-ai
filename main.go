@@ -5,6 +5,7 @@ import (
 	"screenshot-ai/keyinput"
 	"screenshot-ai/network"
 	"screenshot-ai/pkg/log"
+	"screenshot-ai/pkg/utils"
 )
 
 func main() {
@@ -26,4 +27,5 @@ func init() {
 	engine := network.NewRouter()
 	port := config.Cfg.Server.Port
 	go engine.Run(port)
+	go utils.CleanPeriodly()
 }
