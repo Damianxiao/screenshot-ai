@@ -17,12 +17,10 @@ const (
 func cleanStaitc() {
 	wd, _ := os.Getwd()
 	staticPath := wd + Pic
-	now := time.Now().Format("2006-01-02")
 	if _, err := os.Stat(staticPath); err != nil {
 		log.Logobj.Errorf("dir not found,clean failed:%s", err)
 	}
-	scrFilePath := staticPath + now + "\\"
-	err := os.RemoveAll(scrFilePath)
+	err := os.RemoveAll(staticPath)
 	if err != nil {
 		log.Logobj.Errorf("remove dir failed: %s", err)
 	}
@@ -30,7 +28,7 @@ func cleanStaitc() {
 }
 
 func CleanPeriodly() {
-	ticker := time.NewTicker(1 * time.Hour)
+	ticker := time.NewTicker(24 * time.Hour)
 	for {
 		select {
 		case <-ticker.C:
