@@ -40,7 +40,10 @@ func selectModel(model, img string) map[string]interface{} {
 		return NewGeminiPayload(model, img)
 	case "grok-2-vision-1212":
 		return NewGrokPayload(model, img)
+	case "claude-3-7-sonnet-20250219":
+		return NewCladue0219(model,img)		
 	default:
+		
 		// 为其他所有模型执行默认操作
 		return NewGptPayload(model, img)
 	}

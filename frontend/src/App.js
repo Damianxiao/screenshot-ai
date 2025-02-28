@@ -77,12 +77,15 @@ const App = () => {
       </div>
       <div className="controls">
         <select value={model} onChange={(e) => setModel(e.target.value)} className="model-select">
+          <option value="claude-3-7-sonnet-20250219" >claude-3.7</option>
           <option value="gpt-4o">GPT-4o</option>
-          <option value="claude-3-5-sonnet-20240620">claude-3.5</option>
+          <option value="claude-3-5-sonnet-20240620">claude-3.5</option
+          >
+          
           <option value="gemini-1.5-flash">gemini-1.5</option>
           <option value="grok-2-vision-1212">grok-2</option>
         </select>
-        <button onClick={handleContinue} className="continue-btn">answer</button>
+        <button onClick={handleContinue} className="continue-btn">Ask</button>
       </div>
       <div className="output" ref={outputRef}>
         {messages.map((msg, index) => (

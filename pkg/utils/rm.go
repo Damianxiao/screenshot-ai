@@ -31,7 +31,7 @@ func cleanStaitc() {
 }
 
 func CleanPeriodly() {
-	ticker := time.NewTicker(8 * time.Hour)
+	ticker := time.NewTicker(30 * time.Minute)
 	for {
 		select {
 		case <-ticker.C:
