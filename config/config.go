@@ -1,6 +1,7 @@
 package config
 
 import (
+	"os"
 	"strings"
 
 	"github.com/spf13/viper"
@@ -30,7 +31,9 @@ type Server struct {
 
 func InitConfig() {
 	// wd, _ := os.Getwd()
-	wd := "E:\\screenshot-ai" // test
+	// wd := "E:\\screenshot-ai" // test
+	wd, _ := os.Getwd() // test
+
 	// fmt.Println("wd" + wd)
 	newWd := strings.Replace(wd, "\\", "/", 2)
 	configPath := newWd + "/config/config.yaml"
