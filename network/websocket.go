@@ -69,6 +69,7 @@ func (h *Hub) Start() {
 					resp, err := api.CallApiWithimg(message.Content, message.Model)
 					if err != nil {
 						fmt.Printf("broadcast received err %s\n", err)
+						client.Send <- WebSocketMessage{Type: TypeResp, Content: fmt.Sprintf("err :%s,resp:%s", err.Error(), resp)}
 						continue
 					}
 					client.Send <- WebSocketMessage{Type: TypeResp, Content: resp}

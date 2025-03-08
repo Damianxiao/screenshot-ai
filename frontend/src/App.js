@@ -78,11 +78,12 @@ const App = () => {
       <div className="controls">
         <select value={model} onChange={(e) => setModel(e.target.value)} className="model-select">
           <option value="claude-3-7-sonnet-20250219" >claude-3.7</option>
+          <option value="cld-3-7-sonnet-20250219" >cld-3-7-sonnet-20250219</option>
+           <option value="chatgpt-4o-latest" >chatgpt-4o-latest</option>
           <option value="gpt-4o">GPT-4o</option>
           <option value="claude-3-5-sonnet-20240620">claude-3.5</option
           >
-          
-          <option value="gemini-1.5-flash">gemini-1.5</option>
+          <option value="gpt-4o-2024-11-20">gpt-4o-2024-11-20</option>
           <option value="grok-2-vision-1212">grok-2</option>
         </select>
         <button onClick={handleContinue} className="continue-btn">Ask</button>

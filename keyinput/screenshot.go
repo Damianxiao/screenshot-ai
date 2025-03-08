@@ -37,8 +37,8 @@ func (b *bind) StartEvents() {
 		defer b.mu.Unlock()
 		now := time.Now()
 		if now.Sub(b.lastShot) < b.coolDown {
-			waitTime := b.coolDown - now.Sub(b.lastShot)
-			fmt.Printf("too many type in, retry in %s\n", waitTime)
+			// waitTime := b.coolDown - now.Sub(b.lastShot)
+			// fmt.Printf("too many type in, retry in %s\n", waitTime)
 			return
 		}
 		img, err := TakeScreenShot()

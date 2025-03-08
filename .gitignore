@@ -2,3 +2,4 @@ config/config.yaml
 /.vscode/
 static/screenshot
 static/log
+run.vbs

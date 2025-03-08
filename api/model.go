@@ -41,9 +41,9 @@ func selectModel(model, img string) map[string]interface{} {
 	case "grok-2-vision-1212":
 		return NewGrokPayload(model, img)
 	case "claude-3-7-sonnet-20250219":
-		return NewCladue0219(model,img)		
+		return NewCladue0219(model, img)
 	default:
-		
+
 		// 为其他所有模型执行默认操作
 		return NewGptPayload(model, img)
 	}
@@ -59,10 +59,8 @@ func Call(url, apiKey string, jsonPayload []byte) (string, error) {
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", apiKey))
 	client := &http.Client{}
 	resp, err := client.Do(req)
-
 	if err != nil {
-		return "", fmt.Errorf("call:request ai failed,%s", err)
-
+		return "请求失败或超时", fmt.Errorf("call:request ai failed,%s", err)
 	}
 	defer resp.Body.Close()
 	data, err := io.ReadAll(resp.Body)
@@ -75,10 +73,9 @@ func Call(url, apiKey string, jsonPayload []byte) (string, error) {
 		return "", fmt.Errorf("call:unmarshal resp body failed")
 	}
 	if len(res.Choices) == 0 {
-		return "", fmt.Errorf("resp:invalid resp")
+		return string(data), fmt.Errorf("resp:invalid resp")
 	}
-	log.Logobj.Info("model resp:", res.Choices[0].Message.Content)
 	msg := res.Choices[0].Message.Content
-
+	log.Logobj.Info("model resp:", msg)
 	return msg, nil
 }
